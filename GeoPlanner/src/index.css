@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Space Mono', monospace;
+  --font-display: 'Share Tech Mono', monospace;
+}
+
+/* Global Classified Dossier Design System */
+:root {
+  --theme-bg: #f5f4ef; /* Warm Cream Paper */
+  --theme-panel: #ffffff; /* White card sheets */
+  --theme-border: #1a1a1a; /* Sharp Black borders */
+  --theme-text: #1a1a1a; /* Dark charcoal */
+  --theme-text-muted: #555555;
+  --theme-grid-color: rgba(26, 26, 26, 0.05); /* Technical Grid */
+}
+
+/* 5 Themes mapping active accents (readable & high contrast) */
+:root, .theme-default {
+  --theme-primary: #10b981; /* Light Emerald Green */
+  --theme-primary-rgb: 16, 185, 129;
+  --theme-secondary: #047857;
+  --theme-glow: rgba(16, 185, 129, 0.06);
+}
+
+.theme-forest {
+  --theme-primary: #10b981; /* Forest Green */
+  --theme-primary-rgb: 16, 185, 129;
+  --theme-secondary: #047857;
+  --theme-glow: rgba(16, 185, 129, 0.06);
+}
+
+.theme-mint {
+  --theme-primary: #0d9488; /* Mint Green */
+  --theme-primary-rgb: 13, 148, 136;
+  --theme-secondary: #0f766e;
+  --theme-glow: rgba(13, 148, 136, 0.06);
+}
+
+.theme-sage {
+  --theme-primary: #689f7d; /* Sage Green */
+  --theme-primary-rgb: 104, 159, 125;
+  --theme-secondary: #4a755b;
+  --theme-glow: rgba(104, 159, 125, 0.06);
+}
+
+.theme-lime {
+  --theme-primary: #65a30d; /* Lime Green */
+  --theme-primary-rgb: 101, 163, 13;
+  --theme-secondary: #4d7c0f;
+  --theme-glow: rgba(101, 163, 13, 0.06);
+}
+
+:root {
+  color-scheme: light;
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+  overflow-x: hidden;
+  background-color: var(--theme-bg);
+  background-image: 
+    linear-gradient(var(--theme-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--theme-grid-color) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
+  transition: all 0.3s ease;
+}
+
+/* Technical Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--theme-bg);
+  border-left: 1px solid var(--theme-border);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--theme-border);
+  border: 2px solid var(--theme-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-text-muted);
+}
+
+/* Dossier Card Sheet - sharp borders, solid background */
+.glass-panel {
+  background: var(--theme-panel);
+  border: 1.5px solid var(--theme-border);
+  box-shadow: 3px 3px 0px 0px var(--theme-border);
+  border-radius: 0px !important; /* Brutalist sharp corners */
+}
+
+.glass-panel-hover {
+  transition: all 0.2s ease;
+}
+.glass-panel-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px 0px var(--theme-border);
+}
+
+/* Dynamic theme gradients - replaced with solid dossier headers */
+.text-theme-gradient {
+  color: var(--theme-primary);
+}
+
+.bg-theme-gradient {
+  background-color: var(--theme-primary);
+  color: #ffffff;
+}
+
+.text-gradient-title {
+  color: var(--theme-border);
+}
+
+/* Leaflet Map Dossier Style (Vintage Monochrome Blueprint Overlay) */
+.dark-leaflet-map .leaflet-tile {
+  filter: sepia(30%) contrast(110%) brightness(95%) saturate(80%) !important;
+}
+
+.dark-leaflet-map .leaflet-container {
+  background: var(--theme-bg) !important;
+  border: 2px solid var(--theme-border) !important;
+}
+
+.leaflet-bar {
+  border: 1.5px solid var(--theme-border) !important;
+  border-radius: 0px !important;
+  box-shadow: 2px 2px 0px 0px var(--theme-border) !important;
+}
+
+.leaflet-bar a {
+  background-color: var(--theme-panel) !important;
+  color: var(--theme-border) !important;
+  border-bottom: 1.5px solid var(--theme-border) !important;
+  border-radius: 0px !important;
+  transition: all 0.2s;
+  font-family: var(--font-sans) !important;
+  font-weight: bold !important;
+}
+
+.leaflet-bar a:hover {
+  background-color: var(--theme-primary) !important;
+  color: #ffffff !important;
+}
+
+/* Glowing Pulsing Markers styling */
+.pulse-marker-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.pulse-marker {
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--theme-border);
+  position: relative;
+  box-shadow: 0 0 5px currentColor;
+}
+
+.pulse-marker::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 1.5px solid currentColor;
+  opacity: 0;
+  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Keyframes for backgrounds */
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(15px, -15px) scale(1.05);
+  }
+}
+
+.animate-blob-1, .animate-blob-2, .animate-blob-3 {
+  opacity: 0 !important; /* Disable glow blobs for paper terminal look */
+}
+
+/* Dossier Theme Styles */
+.dossier-divider {
+  border-bottom: 1.5px dotted var(--theme-border);
+  opacity: 0.25;
+  flex-grow: 1;
+  margin: 0 8px;
+  align-self: flex-end;
+  margin-bottom: 4px;
+}
+
+.dossier-alert-success {
+  background-color: #e3f0e5 !important;
+  border: 1.5px solid #2e5c36 !important;
+  color: #2e5c36 !important;
+}
+
+.dossier-alert-warning {
+  background-color: #fcf5e3 !important;
+  border: 1.5px solid #a28120 !important;
+  color: #7c5e10 !important;
+}
+
+.dossier-alert-danger {
+  background-color: #f9e8e6 !important;
+  border: 1.5px solid #e06b5e !important;
+  color: #9c2c22 !important;
+}
+
+/* System Readiness Dot Indicator */
+.dossier-pulse-dot {
+  width: 10px;
+  height: 10px;
+  background-color: currentColor;
+  border-radius: 50%;
+  position: relative;
+}
+
+.dossier-pulse-dot::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  opacity: 0;
+  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+/* Brutalist/Retro Technical Progress Bar */
+.dossier-progress-bg {
+  background-color: var(--theme-bg);
+  border: 1px solid var(--theme-border);
+  height: 8px;
+  width: 100%;
+  position: relative;
+}
+
+.dossier-progress-fill {
+  background-color: var(--theme-primary);
+  height: 100%;
+}
+
+/* Leaflet default styles support */
+@import "leaflet/dist/leaflet.css";
+
